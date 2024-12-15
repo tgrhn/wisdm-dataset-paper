@@ -81,7 +81,7 @@ def scale_data(X_train, X_val, X_test):
 dataset = load_data(file_path)
 dataset = preprocess_data(dataset)
 
-window_size = 60  # 10 seconds
+window_size = 200  # 10 seconds
 overlap = 50  # 50% overlap
 X, y = segment_data(dataset, window_size, overlap)
 print(f"Shape of segmented data: {X.shape}, Labels: {len(y)}")
@@ -101,13 +101,13 @@ print(f"Train shape: {X_train.shape}, Validation shape: {X_val.shape}, Test shap
 
 X_train_scaled, X_val_scaled, X_test_scaled, scaler = scale_data(X_train, X_val, X_test)
 
-with open('preprocessed_wisdm_40_window_size.pkl', 'wb') as f:
+with open('preprocessed_wisdm_200_window_size.pkl', 'wb') as f:
     pickle.dump((X_train_scaled, X_val_scaled, X_test_scaled, y_train, y_val, y_test), f)
 
 with open('label_encoder.pkl', 'wb') as f:
     pickle.dump(le, f)
 
-with open('scaler_40.pkl', 'wb') as f:
+with open('scaler_200.pkl', 'wb') as f:
     pickle.dump(scaler, f)
 
 print("Data preprocessing complete and saved!")
